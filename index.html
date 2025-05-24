@@ -12,7 +12,6 @@
 <body class="dark-theme">
     <!-- Theme Selector -->
     <div class="theme-selector">
-       
         <div class="theme-btn" data-theme="default-light-theme" title="Default Light">
             <i class="fas fa-sun"></i>
         </div>
@@ -59,6 +58,10 @@
             <i class="fab fa-telegram"></i>
             <span>Telegram</span>
         </a>
+        <a href="https://drive.google.com/file/d/1NEBCEzVkCnWY3HWJTnAuATc7bdy-8OZr/view?usp=drive_link" class="social-icon resume" id="resume-link">
+            <i class="fas fa-file-pdf"></i>
+            <span>Resume</span>
+        </a>
     </div>
 
     <!-- Animated Background -->
@@ -84,6 +87,7 @@
                     <li><a href="#projects" class="nav-link">Projects</a></li>
                     <li><a href="#certifications" class="nav-link">Certifications</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><a href="https://drive.google.com/file/d/1NEBCEzVkCnWY3HWJTnAuATc7bdy-8OZr/view?usp=drive_link" class="nav-link" id="nav-resume-link">Resume</a></li>
                 </ul>
             </nav>
             <div class="header-right">
@@ -503,10 +507,10 @@
                     </div>
                     <form class="contact-form animate__animated animate__fadeInRight" id="contactForm">
                         <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            <input type="text" id="name" name="from_name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            <input type="email" id="email" name="user_email" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
                             <input type="text" id="subject" name="subject" placeholder="Subject" required>
@@ -526,10 +530,8 @@
             <p>&copy; 2025 Hritik Ranjan. All rights reserved.</p>
         </div>
     </footer>
-    <!-- Before your script.js -->
 
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
     <script src="js/script.js"></script>
-  
 </body>
 </html>

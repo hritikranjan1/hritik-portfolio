@@ -1583,6 +1583,124 @@ footer {
     
     .hero-content,
     .about-text,
+    /* Add this to your existing CSS */
+.social-icon.resume:hover {
+    color: #d32f2f;
+}
+
+/* Update the social sidebar styles to make it responsive */
+.social-sidebar {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 100;
+    background-color: var(--card-bg);
+    padding: 15px 10px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+/* Make sure social sidebar is visible on mobile */
+@media (max-width: 768px) {
+    .social-sidebar {
+        flex-direction: row;
+        top: auto;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        max-width: 90%;
+        overflow-x: auto;
+        padding: 10px 15px;
+    }
+    
+    .social-sidebar .social-icon span {
+        display: none;
+    }
+}
+
+/* Update contact form styles */
+.contact-form {
+    flex: 1;
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px var(--shadow-color);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--card-hover);
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Form Success Message */
+.form-success {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--success-color);
+    color: white;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+.form-error {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--danger-color);
+    color: white;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+.form-success i,
+.form-error i {
+    font-size: 1.5rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
     .contact-info {
         max-width: 100%;
         text-align: center;

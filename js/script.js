@@ -1,6 +1,27 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize EmailJS
-    emailjs.init("hgmQEjdqZgMRqxaKx"); // Your EmailJS User ID
+    emailjs.init("jocUFhKyehMFmQgYW"); // Your EmailJS User ID
+
+    // Resume link functionality
+    const resumeLink = document.getElementById('resume-link');
+    const navResumeLink = document.getElementById('nav-resume-link');
+    
+    // Add your resume PDF link here
+    const resumeUrl = 'https://drive.google.com/file/d/1NEBCEzVkCnWY3HWJTnAuATc7bdy-8OZr/view?usp=drive_link'; // Replace with your actual resume URL
+    
+    if (resumeLink) {
+        resumeLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open(resumeUrl, '_blank');
+        });
+    }
+    
+    if (navResumeLink) {
+        navResumeLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open(resumeUrl, '_blank');
+        });
+    }
 
     // Theme Management
     const themeToggle = document.querySelector('.theme-toggle');
@@ -123,6 +144,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 cursor.style.backgroundColor = '#e1306c';
             } else if (icon.classList.contains('youtube')) {
                 cursor.style.backgroundColor = '#ff0000';
+            } else if (icon.classList.contains('telegram')) {
+                cursor.style.backgroundColor = '#0088cc';
+            } else if (icon.classList.contains('resume')) {
+                cursor.style.backgroundColor = '#d32f2f';
             }
         });
     });
@@ -155,12 +180,14 @@ document.addEventListener('DOMContentLoaded', function() {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            window.scrollTo({
-                top: targetElement.offsetTop - 80,
-                behavior: 'smooth'
-            });
+            if (targetId.startsWith('#')) {
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
         });
     });
     
@@ -177,10 +204,25 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.disabled = true;
             
             // Send the email using EmailJS
-            emailjs.sendForm('service_mtjvnzx', 'template_s39d9c9', this)
+            emailjs.sendForm('service_vqm12xa', 'template_la7064p', this)
                 .then(() => {
                     showFormMessage('success', 'Thank you for your message! I will get back to you soon.');
                     contactForm.reset();
+                    
+                    // Send confirmation email to user
+                    const templateParams = {
+                        from_name: this.from_name.value,
+                        user_email: this.user_email.value,
+                        subject: this.subject.value,
+                        message: this.message.value
+                    };
+                    
+                    emailjs.send('service_vqm12x', 'template_la7064', templateParams)
+                        .then(() => {
+                            console.log('Confirmation email sent successfully');
+                        }, (error) => {
+                            console.error('Failed to send confirmation email:', error);
+                        });
                 }, (error) => {
                     console.error('EmailJS Error:', error);
                     showFormMessage('error', 'Oops! Something went wrong. Please try again later.');
@@ -195,6 +237,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function showFormMessage(type, message) {
         const iconClass = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
         const messageClass = type === 'success' ? 'form-success' : 'form-error';
+        
+        // Remove any existing messages
+        const existingMessages = document.querySelectorAll('.form-success, .form-error');
+        existingMessages.forEach(msg => msg.remove());
         
         const messageDiv = document.createElement('div');
         messageDiv.className = messageClass;
